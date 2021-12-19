@@ -1,0 +1,52 @@
+{% extends 'hr_features/layout.html' %}
+{% load static %}
+
+{% block css %} {% endblock %}
+
+{% block main %} 
+<div class="row">
+    <div class="container mt-5">
+        <h4 class="text-center alert alert-info"> HR CONTACT DETAILS</h4>
+        
+        <table class="table table-striped">
+        <thead>
+            
+            <tr>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Status</th>
+            <th scope="col">Interview Mode</th>
+            <th scope="col">HR Count</th>
+            <th scope="col">Department</th>
+            <th scope="col">Transport</th>
+            <th scope="col">Extra Comments</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hr in hrs %}
+            <tr>
+                <td>{{hr.fullname}}</td>
+                <td>{{hr.companyname}}</td>
+                <td>{{hr.email}}</td>
+                <td>{{hr.mobile}}</td>
+                <td>{{hr.status}}</td>
+                <td>{{hr.interview}}</td>
+                <td>{{hr.hrcount}}</td>
+                <td>{{hr.dept}}</td>
+                <td>{{hr.transport}}</td>
+                <td>{{hr.extra_comments}}</td>
+               <td class="row"><a href="{% url 'update_hr' id=hr.pk %}" class="col-sm-6"><button type="button" class="btn btn-warning">EDIT</button></a><a href="{% url 'delete_hr' id=hr.pk %}" class="col-sm-6"><button type="button" class="btn btn-danger">DELETE</button></a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %} {% endblock %}

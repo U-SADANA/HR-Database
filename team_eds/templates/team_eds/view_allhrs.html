@@ -1,0 +1,52 @@
+{% extends 'team_eds/layout.html' %}
+{% load static %}
+
+{% block css %} {% endblock %}
+
+{% block main %} 
+<div class="row">
+    <div class="container mt-5">
+        <h4 class="text-center alert alert-info"> HR CONTACT DETAILS</h4>
+        
+        <table class="table table-striped">
+        <thead>
+
+            <tr>
+            <th scope="col">Added By</th>
+            <th scope="col">Name</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Status</th>
+            <th scope="col">Interview Mode</th>
+            <th scope="col">HR Count</th>
+            <th scope="col">Department</th>
+            <th scope="col">Transport</th>
+            <th scope="col">Extra Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for h in hrs %}
+
+            <tr>
+                <td>{{h.added_by.email}}</td>
+                <td>{{h.fullname}}</td>
+                <td>{{h.companyname}}</td>
+                <td>{{h.email}}</td>
+                <td>{{h.mobile}}</td>
+                <td>{{h.status}}</td>
+                <td>{{h.interview}}</td>
+                <td>{{h.hrcount}}</td>
+                <td>{{h.dept}}</td>
+                <td>{{h.transport}}</td>
+                <td>{{h.extra_comments}}</td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %} {% endblock %}

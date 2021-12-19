@@ -1,0 +1,74 @@
+{% extends 'team_eds/layout.html' %}
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block main %} 
+<main class="form-signin" >
+    <form action='' method='POST' onSubmit="return checkPassword(this)">
+      {% csrf_token %}
+      <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal" style="color:white;">Sign Up</h1>
+  
+      <div class="form-floating">
+          <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" required>
+          <label for="floatingInput">Full Name</label>
+        </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="pwd" placeholder="Password" name="pwd" required>
+        <label for="floatingPassword">Create Password</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="cpwd" placeholder="Password" name="cpwd" required>
+        <label for="floatingPassword">Confirm Password</label>
+      </div>
+     
+      <button class="w-100 btn btn-lg btn-primary" type="submit" id="sub_button" disabled>Sign Up</button>
+     
+    </form>
+  </main>
+{% endblock %}
+
+
+{% block js %} 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function checkPassword(form) { 
+    pwd = form.pwd.value; 
+    cpwd = form.cpwd.value; 
+    if (pwd != cpwd) { 
+        alert ("\nPassword did not match: Please try again...") 
+        return false; 
+    } 
+    else{ 
+        return true; 
+    } 
+}
+    $("#email").change(function () {
+        var email = $(this).val();
+        $.ajax({
+            url: '{% url "validate_email" %}',
+            data: {
+            'email':email
+            },
+            dataType: 'json',
+            success: function (data) {
+            if (data.is_taken) {
+                alert("A user with this Email Id already exists.");
+                document.getElementById('sub_button').disabled = true;
+            }
+            else{
+                document.getElementById('sub_button').disabled = false;
+            }
+            }
+        });
+    });
+</script>
+{% endblock %}

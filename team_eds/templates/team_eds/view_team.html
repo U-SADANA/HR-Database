@@ -1,0 +1,33 @@
+{% extends 'team_eds/layout.html' %}
+{% load static %}
+
+{% block css %} {% endblock %}
+
+{% block main %} 
+<div class="row">
+    <div class="container mt-5">
+        <h4 class="text-center alert alert-info"> HR CONTACT DETAILS</h4>
+        
+        <table class="table table-striped">
+        <thead>
+
+            <tr>
+            <th scope="col">FullName</th>
+            <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stud in students %}
+            <tr>
+                <td>{{stud.student_users.fullname}}</td>
+                <td>{{stud.student_users.email}}</td>
+                <td><a href="{% url 'teams_eds_progress' email=stud.student_users.email %}"><button type="button" class="btn btn-primary">Progress</button></a></td>
+            </tr>
+           {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %} {% endblock %}
