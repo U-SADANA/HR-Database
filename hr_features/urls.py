@@ -8,4 +8,6 @@ urlpatterns = [
     path('delete_hr/<int:id>',views.delete_hr,name='delete_hr'), 
     path('validate_email_hr',views.validate_email_hr,name='validate_email_hr'), 
     path('validate_phno',views.validate_phno,name='validate_phno'), 
+    path('hr_email',views.hr_email,name='hr_email'), 
+    path('show_hr_modal/',views.show_hr_modal,name='show_hr_modal'),
 ]

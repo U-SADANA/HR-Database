@@ -1,0 +1,155 @@
+{% extends 'hr_features/layout.html' %}
+{% load static %}
+
+{% block css %} 
+<style>
+    #section1{
+        background-color:#472a99;
+    }
+    #section3{
+        background-color:#472a99;
+    }
+    #section2{
+        background-color:#000;
+    }
+    #multiCollapseExample1{
+        background-color:#000;
+        color:white;
+    }
+    #multiCollapseExample2{
+        background-color:#000;
+        color:white;
+    }
+    #violet{
+        background-color:#472a99;
+    }
+    #violet2{
+        background-color:#472a99;
+    }
+</style>
+{% endblock %}
+{% block main %}
+
+<div class="container">
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#section1">INVITATION MAILER</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#section2">CONFIRMATION MAILER</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#section3">Section 3</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div id="section1" class="container-fluid text-white" style="padding:40px 20px;">
+    <br>
+  <h1>INVITATION MAILER</h1>
+  <br>
+  <pre>
+    Dear Sir/Ma’am,
+
+    Greetings from Sri Venkateswara College of Engineering. Hope you are doing well and are safe.
+    As we had discussed on our call, the particulars of the event have been included with a formal 
+    invitation for you and your colleagues. The online event will be held on the 27th of February 
+    (Sunday) through Google Meet and the offline event on the 6th March (Sunday) for all departments
+     in the college premises. The event is scheduled to begin at 9:30 AM and conclude by 3:00 PM.
+    Kindly refer to the attached file to this mailer for additional details. Kindly let us know a 
+    date that is convenient for you. Contact us at the number provided in case there are any further 
+    clarifications regarding the online framework along with proceedings of the event.
+    We would be privileged to have you aboard and we fondly await your partaking.
+    
+    Thank you.
+    
+    Forese Website Link: forese-website.netlify.app
+    Forese Linkedin Link: www.linkedin.com/company/forese/
+  </pre>
+</div>
+
+<div id="section2" class="container-fluid text-white" style="padding:100px 20px;">
+  <h1>CONFIRMATION MAILER</h1>
+  <pre>
+    Dear Sir, 
+
+    We take this opportunity to thank you for your assistance and participation in the Mock Placements 2021 
+    hosted at Sri Venkateswara College of Engineering. The team hosting this event will reach out to you 
+    with the particulars of the event to be conducted on X/X/2021. The details for the transport arrangements 
+    will be sent to you shortly. All the Covid-19 protocols will be followed as per the latest guidelines. 
+    We look forward to joining you soon. We are grateful for your efforts despite your busy schedule.
+    
+    Thank you.
+    Regards,
+    XXXXX
+    
+    Forese Website Link: forese-website.netlify.app
+    Forese Linkedin Link: www.linkedin.com/company/forese/
+
+    CLICK TO VIEW ONLINE CONFIRMATION MAILER
+  </pre>
+  <p>
+    <a id="violet"class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">CLICK TO VIEW ONLINE CONFIRMATION MAILER</a>
+    <button id="violet2" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">CLICK TO VIEW OFFLINE CONFIRMATION MAILER</button>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <pre>
+        Dear Sir, 
+
+        We take this opportunity to thank you for your assistance and participation in the Mock Placements 2021 
+        hosted at Sri Venkateswara College of Engineering. The team hosting this event will reach out to you with 
+        the particulars of the event to be conducted on X/X/2021. The respective meet links and login credentials 
+        will be sent shortly and you’ll be guided by our team members . We look forward to joining you 
+        soon. We are grateful for your efforts despite your busy schedule.
+
+        Thank you.
+        Regards,
+        XXXXX
+
+        Forese Website Link: forese-website.netlify.app
+        Forese Linkedin Link: www.linkedin.com/company/forese/
+
+        </pre>
+      </div>
+    </div>
+    <div class="col">
+      <div class="collapse multi-collapse" id="multiCollapseExample2">
+        <pre>
+        Dear Sir, 
+
+        We take this opportunity to thank you for your assistance and participation in the Mock Placements 2021 
+        hosted at Sri Venkateswara College of Engineering. The team hosting this event will reach out to you 
+        with the particulars of the event to be conducted on X/X/2021. The respective meet links and login 
+        credentials will be sent shortly and you’ll be guided by our team members . We look forward to joining 
+        you soon. We are grateful for your efforts despite your busy schedule.
+
+        Thank you.
+        Regards,
+        XXXXX
+
+        Forese Website Link: forese-website.netlify.app
+        Forese Linkedin Link: www.linkedin.com/company/forese/
+        </pre>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="section3" class="container-fluid text-white" style="padding:100px 20px;">
+  <h1>Section 3</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+</div>
+</body>
+</html>
+
+{% endblock %}

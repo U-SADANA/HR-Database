@@ -13,27 +13,27 @@
             <div class="row">
             <div class="col-6">
                 <label for="fname">Full Name</label>
-                <input type="text" class="form-control" placeholder="Full Name" name="fname" id="fname" required>
+                <input type="text" class="form-control" placeholder="Full Name" name="fname" id="fname" required >
             </div>
             <div class="col-6">
                 <label for="cname">Company Name</label>
-                <input type="text" class="form-control" placeholder="Company Name" name="cname" id="cname" required>
+                <input type="text" class="form-control" placeholder="Company Name" name="cname" id="cname" required >
             </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label for="email">Email ID</label>
-                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required >
                 </div>
                 <div class="col-6">
                     <label for="phno">Contact</label>
-                    <input type="text" class="form-control" placeholder="Contact" name="phno" id="phno" required>
+                    <input type="text" class="form-control" placeholder="Contact" name="phno" id="phno" required >
                 </div>
             </div>
                 <div class="row">
                     <div class="col-4">
                         <label for="status">Status</label>
-                        <select class="form-select" name="status" id="status" required>
+                        <select class="form-select" name="status" id="status" required >
                             <option selected>-------</option>
                             <option value="Not Called">Not Called</option>
                             <option value="Wrong Number">Wrong Number</option>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-4">
                         <label for="interview"> Interview Preference</label>
-                        <select class="form-select" name="interview" id="interview" required>
+                        <select class="form-select" name="interview" id="interview" required >
                             <option selected>------</option>
                             <option value="Offline">Offline</option>
                             <option value="Online">Online</option>
@@ -56,32 +56,44 @@
                     </div>
                     <div class="col-4">
                         <label for="hrcount">HR Count</label>
-                        <input type="number" class="form-control" placeholder="HR Count" name="hrcount" id="hrcount" required>
+                        <input type="number" class="form-control" placeholder="HR Count" name="hrcount" id="hrcount" required >
                     </div>
             </div>
+            <br>
             <label>Department Preference </label>
-            <input class="form-check-input mt-0" type="checkbox" value="AUT" name="AUT" id="AUT">AUT
-            <input class="form-check-input mt-0" type="checkbox" value="BIO" name="BIO" id="BIO">BIO
-            <input class="form-check-input mt-0" type="checkbox" value="CHE" name="CHE" id="CHE">CHE
-            <input class="form-check-input mt-0" type="checkbox" value="CIVIL" name="CIVIL" id="CIVIL">CIVIL
-            <input class="form-check-input mt-0" type="checkbox" value="CSE" name="CSE" id="CSE">CSE
-            <input class="form-check-input mt-0" type="checkbox" value="ECE" name="ECE" id="ECE">ECE
-            <input class="form-check-input mt-0" type="checkbox" value="EEE" name="EEE"id="EEE">EEE
-            <input class="form-check-input mt-0" type="checkbox" value="IT" name="IT" id="IT">IT
-            <input class="form-check-input mt-0" type="checkbox" value="MECH" name="MECH" id="MECH">MECH
-        
-            <label for="transport">Transport Preference</label>
-                <select class="form-select" name="transport" id="transport" required>
-                    <option selected>------</option>
-                    <option value="Own Transport">Own Transport</option>
-                    <option value="College Cab">College Cab</option>
-                  </select>
+            <input class="form-check-input mt-0" type="checkbox" value="AUT" name="AUT" id="AUT" >AUT
+            <input class="form-check-input mt-0" type="checkbox" value="BIO" name="BIO" id="BIO" >BIO
+            <input class="form-check-input mt-0" type="checkbox" value="CHE" name="CHE" id="CHE" >CHE
+            <input class="form-check-input mt-0" type="checkbox" value="CIVIL" name="CIVIL" id="CIVIL" >CIVIL
+            <input class="form-check-input mt-0" type="checkbox" value="CSE" name="CSE" id="CSE" >CSE
+            <input class="form-check-input mt-0" type="checkbox" value="ECE" name="ECE" id="ECE" >ECE
+            <input class="form-check-input mt-0" type="checkbox" value="EEE" name="EEE"id="EEE" >EEE
+            <input class="form-check-input mt-0" type="checkbox" value="IT" name="IT" id="IT" >IT
+            <input class="form-check-input mt-0" type="checkbox" value="MECH" name="MECH" id="MECH" >MECH
+            
+            <div class="row">
+                <div class="col-6">
+                    <label for="transport">Transport Preference</label>
+            
+                    <select class="form-select" name="transport" id="transport"  >
+                        <option selected>------</option>
+                        <option value="Own Transport">Own Transport</option>
+                        <option value="College Cab">College Cab</option>
+                      </select>
+                </div>
+                <div class="col-6">
+                    <br>
+                    <label>Internship</label>
+            <input class="form-check-input mt-0" type="checkbox" value="internship" id="internship" name="internship" > Offered
+                </div>
+            </div>
+                    <label>Extra Comments</label>
                   <div class="form-floating">
-                    
-                    <textarea class="form-control" id="comments" name="comments"></textarea>
+                    <textarea class="form-control" id="comments" name="comments" ></textarea>
                     <label for="floatingTextarea">Leave any Extra Comments</label>
                   </div>
-            <input type="submit" class="btn btn-success" value="Edit"> 
+                  
+            <input type="submit" class="btn btn-success" value="Edit" id="edit" disabled=""> 
             
 
         </form>
@@ -91,6 +103,7 @@
 
 {% endblock %}
 {% block js %} 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     document.getElementById("fname").value="{{hr.fullname}}";
     document.getElementById("cname").value="{{hr.companyname}}";
@@ -102,30 +115,76 @@
     document.getElementById("transport").value="{{hr.transport}}";
     document.getElementById("comments").value="{{hr.extra_comments}}";
 
+
+    if ('{{hr.internship}}'=='True'){
+        document.getElementById('internship').checked=true;
+    }
+
+
     let dept="{{hr.dept}}"
     const dept_arr= dept.split(" ");
-    console.log(dept_arr);
+
     dept_arr.forEach(setDept);
+    
     
 
     function setDept(value, index, array) {
     document.getElementById(value).checked = true;
 }
+var button = $('#edit');
+var orig = [];
+
+$.fn.getType = function() {
+  return this[0].tagName == "INPUT" ? $(this[0]).attr("type").toLowerCase() : this[0].tagName.toLowerCase();
+}
+
+$("form :input").each(function() {
+  var type = $(this).getType();
+  var tmp = {
+    'type': type,
+    'value': $(this).val()
+  };
+  if (type == 'radio') {
+    tmp.checked = $(this).is(':checked');
+  }
+  orig[$(this).attr('id')] = tmp;
+});
+
+$('form').bind('change keyup', function() {
+
+  var disable = true;
+  $("form :input").each(function() {
+    var type = $(this).getType();
+    var id = $(this).attr('id');
+
+    if (type == 'text' || type == 'select') {
+      disable = (orig[id].value == $(this).val());
+    } else if (type == 'radio') {
+      disable = (orig[id].checked == $(this).is(':checked'));
+    }
+
+    if (!disable) {
+      return false; // break out of loop
+    }
+  });
+
+  button.prop('disabled', disable);
+});
+
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 
-    var checkregex=true, checkemail=true, checkphone=true;
         
     $("#phno").change(function () {
         var phno = $(this).val();
         const regexExp = /^[6-9]\d{9}$/;
-        if (!phno.match(regexExp)){
-            checkregex=false;
+        const landregex=/^[0-9]{8}$/;
+        if (!(regexExp.test(phno)||landregex.test(phno))){ 
+            document.getElementById('phno').value=""
             alert("Invalid Phone Number");
             }
-        
-        
+  
         $.ajax({
             url: '{% url "validate_phno" %}',
             data: {
@@ -134,14 +193,14 @@
             dataType: 'json',
             success: function (data) {
             if (data.is_taken) {
-                checkphone=false;
+                document.getElementById('phno').value=""
                 alert("A user with this Phone number already exists.");
                 
             }
             }
         });
     });
-
+    
     $("#email").change(function () {
         var email = $(this).val();
         $.ajax({
@@ -152,24 +211,13 @@
             dataType: 'json',
             success: function (data) {
             if (data.is_taken) {
-                checkemail=false;
+                document.getElementById('email').value=""
                 alert("A user with this Email Id already exists.");
             }
             }
         });
     });
     
-function checkvalidity(form){
-    if(checkemail && checkphone && checkregex ){
-        return true;
-    }
-    else{
-        checkregex=true, checkemail=true, checkphone=true;
-        alert("Invalid Email or Phone Number.")
-        return false;
-
-    }
-}
 
 
 </script>

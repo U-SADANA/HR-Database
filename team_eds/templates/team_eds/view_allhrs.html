@@ -1,19 +1,29 @@
 {% extends 'team_eds/layout.html' %}
 {% load static %}
 
-{% block css %} {% endblock %}
+{% block css %} 
+{% endblock %}
 
 {% block main %} 
 <div class="row">
-    <div class="container mt-5">
         <h4 class="text-center alert alert-info"> HR CONTACT DETAILS</h4>
-        
-        <table class="table table-striped">
+        <div class="row">
+            <div class="col">
+                <div class="card card-body">
+                    <form class="form-inline" method="GET">
+                        {{myFilter.form}}
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                <div>
+            </div>
+        </div>
+        <a href="{% url 'file_load_view' %}">export data</a>
+        <table class="table table-striped ">
         <thead>
 
             <tr>
             <th scope="col">Added By</th>
-            <th scope="col">Name</th>
+            <th scope="col">HR Name</th>
             <th scope="col">Company Name</th>
             <th scope="col">Email</th>
             <th scope="col">Contact</th>
@@ -23,13 +33,15 @@
             <th scope="col">Department</th>
             <th scope="col">Transport</th>
             <th scope="col">Extra Comments</th>
+            
+            
             </tr>
         </thead>
         <tbody>
                 {% for h in hrs %}
 
             <tr>
-                <td>{{h.added_by.email}}</td>
+                <td>{{h.added_by.fullname}}</td>
                 <td>{{h.fullname}}</td>
                 <td>{{h.companyname}}</td>
                 <td>{{h.email}}</td>
@@ -40,12 +52,14 @@
                 <td>{{h.dept}}</td>
                 <td>{{h.transport}}</td>
                 <td>{{h.extra_comments}}</td>
+                
             </tr>
+
             {% endfor %}
     
         </tbody>
         </table>
-    </div>
+    
 </div>
 {% endblock %}
 

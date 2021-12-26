@@ -5,7 +5,6 @@
 
 {% block main %} 
 <div class="row">
-    <div class="container mt-5">
         <h4 class="text-center alert alert-info"> HR CONTACT DETAILS</h4>
         
         <table class="table table-striped">
@@ -13,7 +12,7 @@
 
             <tr>
             <th scope="col">Added By</th>
-            <th scope="col">Name</th>
+            <th scope="col">HR Name</th>
             <th scope="col">Company Name</th>
             <th scope="col">Email</th>
             <th scope="col">Contact</th>
@@ -30,7 +29,7 @@
                 {% for h in hr %}
 
             <tr>
-                <td>{{h.added_by.email}}</td>
+                <td>{{h.added_by.fullname}}</td>
                 <td>{{h.fullname}}</td>
                 <td>{{h.companyname}}</td>
                 <td>{{h.email}}</td>
@@ -46,7 +45,7 @@
         {% endfor %}
         </tbody>
         </table>
-    </div>
+    
 </div>
 {% endblock %}
 

@@ -10,6 +10,7 @@ INTERVIEW_CHOICE=(
 
 STATUS_CHOICE=(
     ('Not Called','Not Called'),
+    ('Blacklisted Contact','Blacklisted Contact'),
     ('Wrong Number','Wrong Number'),
     ('Called/Not Reachable','Called/Not Reachable'),
     ('Called/Postponed','Called/Postponed'),
@@ -36,5 +37,5 @@ class Hr(models.Model):
     dept=models.CharField(max_length=70)
     transport=models.CharField(choices=TRANSPORT_CHOICE,max_length=70)
     extra_comments=models.TextField()
-
-
+    internship=models.BooleanField(default=False)
+    dtoc=models.DateTimeField(auto_now_add=True,null=True)

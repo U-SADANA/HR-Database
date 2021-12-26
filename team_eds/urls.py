@@ -9,5 +9,7 @@ urlpatterns = [
     path('progress/<str:email>',views.progress,name='teams_eds_progress'),
     path('changepassword/',views.changepassword,name='changepassword'),
     path('teams_eds_view_allhrs/',views.teams_eds_view_allhrs,name='teams_eds_view_allhrs'),
+    path('transport_filter/',views.transport_filter,name='transport_filter'),
+    path('file_load_view/',views.file_load_view,name='file_load_view'),
 
 ]

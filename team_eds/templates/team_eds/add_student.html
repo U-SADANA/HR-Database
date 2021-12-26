@@ -6,12 +6,11 @@
 {% endblock %}
 
 
-{% block main %} 
+{% block main %}
 <main class="form-signin" >
     <form action='' method='POST' onSubmit="return checkPassword(this)">
-      {% csrf_token %}
-      <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal" style="color:white;">Sign Up</h1>
+      {% csrf_token %} 
+    <h4 class="text-center alert alert-info">ADD A STUDENT</h4>
   
       <div class="form-floating">
           <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" required>

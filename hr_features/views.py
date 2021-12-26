@@ -7,6 +7,7 @@ from django.conf import settings
 from accounts.models import User
 from .models import *
 from django.http import JsonResponse
+from django.contrib import messages
 
 
 def validate_email_hr(request):
@@ -14,6 +15,7 @@ def validate_email_hr(request):
     data = {
         'is_taken': Hr.objects.filter(email=email).exists()
     }
+    print(data)
     return JsonResponse(data)
 
 
@@ -22,6 +24,7 @@ def validate_phno(request):
     data = {
         'is_taken': Hr.objects.filter(mobile=phno).exists()
     }
+    print(data)
     return JsonResponse(data)
 
 
@@ -36,12 +39,14 @@ def add_hr(request):
             interview=request.POST['interview']
             hrcount=request.POST['hrcount']
             transport=request.POST['transport']
+    
             extra_comments=""
             if 'comments' in request.POST:
                 extra_comments=request.POST['comments']
            
             hr=Hr(added_by=request.user,fullname=fullname,companyname=companyname,email=email,mobile=mobile,status=status,
             interview=interview,hrcount=hrcount,transport=transport,extra_comments=extra_comments)
+            
             dept=""
             if 'AUT' in request.POST:
                 dept+='AUT '
@@ -62,17 +67,23 @@ def add_hr(request):
             if 'IT' in request.POST:
                 dept+='IT '
             hr.dept=dept
+            
+            if 'internship' in request.POST:
+                hr.internship=True
+
             hr.save()
+            messages.success(request,"HR Contact Added Successfully!")
             return redirect('show_hr')
 
         else:
             return render(request,'hr_features/add.html')
+            
     else:
         return redirect('student_login')
 
 def show_hr(request):
     if request.user.is_authenticated and check_student(request.user):
-       hrs=Hr.objects.filter(added_by=request.user).all()
+       hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
        return render(request,'hr_features/show.html',{"hrs":hrs})
     else:
         return redirect('student_login')
@@ -89,9 +100,11 @@ def update_hr(request,id):
             interview=request.POST['interview']
             hrcount=request.POST['hrcount']
             transport=request.POST['transport']
+
             extra_comments=""
             if 'comments' in request.POST:
                 extra_comments=request.POST['comments']
+
             dept=""
             if 'AUT' in request.POST:
                 dept+='AUT '
@@ -111,6 +124,10 @@ def update_hr(request,id):
                 dept+='CSE '
             if 'IT' in request.POST:
                 dept+='IT '
+
+            if 'internship' in request.POST:
+                hr.internship=True
+            
             hr.fullname=fullname
             hr.companyname=companyname
             hr.email=email
@@ -121,6 +138,8 @@ def update_hr(request,id):
             hr.transport=transport
             hr.extra_comments=extra_comments
             hr.dept=dept
+
+            messages.success(request,"HR Contact has been Edited Successfully!")
             hr.save()
             return redirect('show_hr')
         else:
@@ -130,12 +149,25 @@ def update_hr(request,id):
         return redirect('student_login')
 
 def delete_hr(request,id):
+    context ={}
     if request.user.is_authenticated and check_student(request.user):
         hr=Hr.objects.filter(pk=id).first()
         hr.delete()
         return redirect('show_hr')
     else:
         return redirect('student_login')
+   
+
+def hr_email(request):
+    if request.user.is_authenticated and check_student(request.user):
+        return render(request,'hr_features/email.html')
+    else:
+        return redirect('student_login')
 
 
-
+def show_hr_modal(request):
+    if request.user.is_authenticated and check_student(request.user):
+       hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
+       return render(request,'hr_features/show_modal.html',{"hrs":hrs})
+    else:
+        return redirect('student_login')
