@@ -88,7 +88,7 @@ def view_hrs(request):
 
 def teams_eds_view_allhrs(request):
     if request.user.is_authenticated and check_team_ed(request.user):
-        hrs=Hr.objects.all()
+        hrs=Hr.objects.order_by('added_by').all()
 
         myFilter=OrderFilter(request.GET, queryset=hrs)
         hrs=myFilter.qs

@@ -1,22 +1,24 @@
 {% extends 'team_eds/layout.html' %}
 {% load static %}
 
-{% block css %} 
+{% block css %}
+
 {% endblock %}
 
 {% block main %} 
+
 <div class="row">
-        <h4 class="text-center alert alert-info"> HR CONTACT DETAILS</h4>
+        <h4 class="text-center alert alert-info heading"> HR CONTACT DETAILS</h4>
+        
         <div class="row">
             <div class="col">
                 
-                    <div class="d-flex flex-row">
-                    <form class="form-inline" method="GET">
+                    <div class="d-flex flex-wrap">
+                    <form class="form-inline" method="GET" style="font-size: small;">
                         {{myFilter.form}}
-                        <button class="btn btn-primary" type="submit">Search</button>
-                        <a href="{% url 'file_load_view' %}"> &nbsp;<i class="fa fa-download fa-lg"></i></a>
+                        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                        <a href="{% url 'file_load_view' %}"> &nbsp;<i class="fa fa-download fa-lg" style="color:red"></i></a>
                     </form>
-                    
                     <br><br><br>
               
                 <div>
@@ -24,21 +26,21 @@
         </div>
         
         
-        <table class="table table-striped ">
-        <thead>
+        <table class="table table-striped " >
+        <thead style="background-color:#472a99;">
 
             <tr>
-            <th scope="col">Added By</th>
-            <th scope="col">HR Name</th>
-            <th scope="col">Company Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Status</th>
-            <th scope="col">Interview Mode</th>
-            <th scope="col">HR Count</th>
-            <th scope="col">Department</th>
-            <th scope="col">Transport</th>
-            <th scope="col">Extra Comments</th>
+            <th scope="col" class="scope">Added By</th>
+            <th scope="col" class="scope">HR Name</th>
+            <th scope="col" class="scope">Company Name</th>
+            <th scope="col" class="scope">Email</th>
+            <th scope="col" class="scope">Contact</th>
+            <th scope="col" class="scope">Status</th>
+            <th scope="col" class="scope">Interview Mode</th>
+            <th scope="col" class="scope">HR Count</th>
+            <th scope="col" class="scope">Department</th>
+            <th scope="col" class="scope">Transport</th>
+            <th scope="col" class="scope">Extra Comments</th>
             
             
             </tr>

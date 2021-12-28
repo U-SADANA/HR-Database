@@ -29,6 +29,14 @@
           font-size: 3.5rem;
         }
       }
+
+      .space-up {
+        margin-top: 8px;
+      }
+
+      .space-down{
+        margin-top: 10px;
+      }
     </style>
     
     <!-- Custom styles for this template -->
@@ -42,29 +50,31 @@
 <main class="form-signin" >
   <form action='' method='POST' onSubmit="return checkPassword(this)">
     {% csrf_token %}
-    <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="72" height="57">
+    <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="172" height="100">
     <h1 class="h3 mb-3 fw-normal" style="color:white;">Sign Up</h1>
     <h6 class="h6 mb-3 fw-normal" style="color:white;">Already have an account? <a href="{% url 'teams_eds_login' %}" style="color:white;">Login</a> </h6>
     <div class="form-floating">
-        <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" required>
+        <input type="text" class="form-control space-up" id="fname" placeholder="Full Name" name="fname" required>
         <label for="floatingInput">Full Name</label>
       </div>
       <div class="form-floating">
-        <input type="text" class="form-control" id="tname" placeholder="Team Name" name="tname" required>
+        <input type="text" class="form-control space-up" id="tname" placeholder="Team Name" name="tname" required>
         <label for="floatingInput">Team Name</label>
       </div>
     <div class="form-floating">
-      <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+      <input type="email" class="form-control space-up" id="email" placeholder="name@example.com" name="email" required>
       <label for="floatingInput">Email ID</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="pwd" placeholder="Password" name="pwd" required>
+      <input type="password" class="form-control space-down" id="pwd" placeholder="Password" name="pwd" required>
       <label for="floatingPassword">Create Password</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="cpwd" placeholder="Password" name="cpwd" required>
       <label for="floatingPassword">Confirm Password</label>
     </div>
+    
+    
    
     <button class="w-100 btn btn-lg btn-primary" type="submit" id="sub_button" disabled>Sign Up</button>
    

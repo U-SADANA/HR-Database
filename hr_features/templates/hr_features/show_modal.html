@@ -3,14 +3,19 @@
 
 {% block css %} 
 <style>
-    body{
-        background-color:#FFF;
-    }
-
+  body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2edf7;
+  }
     .modal-header{
         background-color:white;
         color:black;
         font-size:large;
+    }
+    .scope {
+      background-color: #472a99;
+      color: white;
+      text-align:left;
     }
 
 
@@ -22,14 +27,14 @@
     <h4 class="table table-striped"> HR CONTACT DETAILS</h4>
     <div class="d-flex p-4">
         <table class="table table-striped">
-        <thead>
+        <thead style="background-color:#472a99;">
             <tr>
-            <th scope="col">HR Name</th>
-            <th scope="col">Company Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Status</th>
+            <th scope="col" class="scope" >HR Name</th>
+            <th scope="col" class="scope">Company Name</th>
+            <th scope="col" class="scope">Contact</th>
+            <th scope="col" class="scope">Status</th>
             
-            <th scope="col">Details</th>
+            <th scope="col" class="scope">Details</th>
             </tr>
         </thead>
         <tbody>
@@ -41,7 +46,7 @@
                 <td>{{hr.status}}</td>
                 
         
-                <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#HR{{hr.pk}}" style="background-color:white; border-color:green"><i class="fa fa-angle-double-down fa-lg" style="color:green"></i></button>
+                <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#HR{{hr.pk}}" style="background-color:white; border-color:#472a99"><i class="fa fa-angle-double-down fa-lg" style="color:green"></i></button>
 
                     <div class="modal fade bd-example-modal-lg"id="HR{{hr.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 

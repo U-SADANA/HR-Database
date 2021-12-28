@@ -29,6 +29,10 @@
           font-size: 3.5rem;
         }
       }
+      .space-up {
+        margin-top: 8px;
+      }
+
     </style>
     
     <!-- Custom styles for this template -->
@@ -42,15 +46,15 @@
 <main class="form-signin">
   <form action='' method='POST'>
     {% csrf_token %}
-    <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="72" height="57">
+    <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="172" height="100">
     <h1 class="h3 mb-3 fw-normal" style="color:white;">Log In</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+      <input type="email" class="form-control space-up" id="email" placeholder="name@example.com" name="email" required>
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="pwd" placeholder="Password" name="pwd" required>
+      <input type="password" class="form-control space-up" id="pwd" placeholder="Password" name="pwd" required>
       <label for="floatingPassword"> Password</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit" >Log In</button>

@@ -24,7 +24,9 @@
     <style>
       body{
         font-family: 'Poppins', sans-serif;
+        background-color: #f2edf7;
       }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -38,6 +40,18 @@
           font-size: 3.5rem;
         }
       }
+
+      .scope {
+        background-color: #472a99;
+        color: white;
+        text-align:left;
+      }
+
+      .heading{
+        border: 2px solid #472a99;
+        background-color:#d5c8ec;
+        color:black;
+      }
     </style>
     {% block css %} {% endblock %}
     
@@ -50,7 +64,7 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="https://forese-website.netlify.app/">
+        <a class="navbar-brand" href="https://www.forese.co.in/">
             <img src="{% static 'images/logo.png' %}"alt="" width="30" height="24">
           </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
