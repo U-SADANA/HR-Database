@@ -43,7 +43,7 @@
                 <td>{{hr.hrcount}}</td>
                 <td>{{hr.dept}}</td>
                 <td>{{hr.transport}}</td>
-                <td>{% if hr.internship %} Offered {% endif %}</td>
+                <td>{% if hr.internship %}{% endif %}</td>
                 <td>{{hr.dtoc}}</td>
                 <td>{{hr.extra_comments}}</td>
                <td><a href="{% url 'update_hr' id=hr.pk %}"><i class="fa fa-edit fa-lg" style=-"color:blue"></i></a>&nbsp;&nbsp;<a href="{% url 'delete_hr' id=hr.pk %}" onclick="return confirmDelete();"><i class="fa fa-trash fa-lg" style="color:red"></i></a></td>

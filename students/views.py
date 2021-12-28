@@ -19,7 +19,7 @@ def login(request):
         if user is not None :
             if user.user_type=='VOLUNTEER':
                 auth.login(request,user,backend=None)
-                return redirect('show_hr')
+                return redirect('show_hr_modal')
             else:
                 return redirect('teams_eds_login')
         else:

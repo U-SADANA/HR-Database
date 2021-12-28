@@ -73,7 +73,7 @@ def add_hr(request):
 
             hr.save()
             messages.success(request,"HR Contact Added Successfully!")
-            return redirect('show_hr')
+            return redirect('show_hr_modal')
 
         else:
             return render(request,'hr_features/add.html')
@@ -141,7 +141,7 @@ def update_hr(request,id):
 
             messages.success(request,"HR Contact has been Edited Successfully!")
             hr.save()
-            return redirect('show_hr')
+            return redirect('show_hr_modal')
         else:
             hr=Hr.objects.filter(pk=id).first()
             return render(request,'hr_features/update.html',{"hr":hr})
@@ -153,7 +153,7 @@ def delete_hr(request,id):
     if request.user.is_authenticated and check_student(request.user):
         hr=Hr.objects.filter(pk=id).first()
         hr.delete()
-        return redirect('show_hr')
+        return redirect('show_hr_modal')
     else:
         return redirect('student_login')
    
