@@ -10,4 +10,7 @@ urlpatterns = [
     path('validate_phno',views.validate_phno,name='validate_phno'), 
     path('hr_email',views.hr_email,name='hr_email'), 
     path('show_hr_modal/',views.show_hr_modal,name='show_hr_modal'),
+    path('Import_csv/', views.Import_csv,name="Import_csv"),  
+    path('faq/', views.faq,name="faq"),  
+    path('pitch/', views.pitch,name="pitch"),  
 ]

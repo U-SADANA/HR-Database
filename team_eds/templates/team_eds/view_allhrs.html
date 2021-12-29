@@ -8,7 +8,9 @@
 {% block main %} 
 
 <div class="row">
-        <h4 class="text-center alert alert-info heading"> HR CONTACT DETAILS</h4>
+    <div class="circle">
+        <h2 class="circleDot">GLOBAL HR CONTACT</h2>
+    </div>
         
         <div class="row">
             <div class="col">
@@ -41,6 +43,7 @@
             <th scope="col" class="scope">Department</th>
             <th scope="col" class="scope">Transport</th>
             <th scope="col" class="scope">Extra Comments</th>
+            <th scope="col" class="scope">Address</th>
             
             
             </tr>
@@ -60,6 +63,7 @@
                 <td>{{h.dept}}</td>
                 <td>{{h.transport}}</td>
                 <td>{{h.extra_comments}}</td>
+                <td>{{h.address}}</td>
                 
             </tr>
 

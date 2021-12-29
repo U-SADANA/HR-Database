@@ -10,6 +10,13 @@ from django.http import JsonResponse
 from django.contrib import messages
 
 
+from .models import Hr
+import datetime as dt
+import pandas as pd
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
 def validate_email_hr(request):
     email = request.GET.get('email', None)
     data = {
@@ -33,19 +40,29 @@ def add_hr(request):
         if request.method == 'POST':
             fullname=request.POST['fname']
             companyname=request.POST['cname']
-            email=request.POST['email']
             mobile=request.POST['phno']
             status=request.POST['status']
             interview=request.POST['interview']
-            hrcount=request.POST['hrcount']
+            hrcount=0
             transport=request.POST['transport']
-    
+            
+            if  request.POST['hrcount'] != "":
+                hrcount=int(request.POST['hrcount'])
+
+            email=""
+            if 'email' in request.POST:
+                email=request.POST['email']
+
             extra_comments=""
             if 'comments' in request.POST:
                 extra_comments=request.POST['comments']
+
+            address=""
+            if 'address' in request.POST:
+                address=request.POST['address']
            
             hr=Hr(added_by=request.user,fullname=fullname,companyname=companyname,email=email,mobile=mobile,status=status,
-            interview=interview,hrcount=hrcount,transport=transport,extra_comments=extra_comments)
+            interview=interview,hrcount=hrcount,transport=transport,extra_comments=extra_comments,address=address)
             
             dept=""
             if 'AUT' in request.POST:
@@ -94,17 +111,27 @@ def update_hr(request,id):
             hr=Hr.objects.filter(pk=id).first()
             fullname=request.POST['fname']
             companyname=request.POST['cname']
-            email=request.POST['email']
             mobile=request.POST['phno']
             status=request.POST['status']
             interview=request.POST['interview']
-            hrcount=request.POST['hrcount']
+            hrcount=0
             transport=request.POST['transport']
+
+            if  request.POST['hrcount'] != "":
+                hrcount=int(request.POST['hrcount'])
+
+            email=""
+            if 'email' in request.POST:
+                email=request.POST['email']
 
             extra_comments=""
             if 'comments' in request.POST:
                 extra_comments=request.POST['comments']
 
+            address=""
+            if 'address' in request.POST:
+                address=request.POST['address']
+            
             dept=""
             if 'AUT' in request.POST:
                 dept+='AUT '
@@ -137,6 +164,7 @@ def update_hr(request,id):
             hr.hrcount=hrcount
             hr.transport=transport
             hr.extra_comments=extra_comments
+            hr.address=address
             hr.dept=dept
 
             messages.success(request,"HR Contact has been Edited Successfully!")
@@ -169,5 +197,51 @@ def show_hr_modal(request):
     if request.user.is_authenticated and check_student(request.user):
        hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
        return render(request,'hr_features/show_modal.html',{"hrs":hrs})
+    else:
+        return redirect('student_login')
+
+
+def Import_csv(request):
+    print('s')               
+    try:
+        if request.method == 'POST' and request.FILES['myfile']:
+            myfile = request.FILES['myfile']   
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            excel_file = uploaded_file_url
+            print(excel_file) 
+            empexceldata = pd.read_csv("."+excel_file,encoding='utf-8')
+            print(type(empexceldata))
+            dbframe = empexceldata
+            for dbframe in dbframe.itertuples():
+                 
+                obj = Hr.objects.create(added_by=request.user,fullname=dbframe.fullname,companyname=dbframe.companyname, email=dbframe.email,
+                                                mobile=dbframe.mobile, status=dbframe.status, interview=dbframe.interview, hrcount=dbframe.hrcount, 
+                                                dept=dbframe.dept, transport=dbframe.transport, extra_comments=dbframe.extra_comments,
+                                                internship=dbframe.internship)
+                print(type(obj))
+                obj.save()
+ 
+            return render(request, 'hr_features/Import_csv.html', {
+                'uploaded_file_url': uploaded_file_url
+            })    
+
+
+    except Exception as identifier:            
+        print(identifier)
+     
+    return render(request, 'hr_features/Import_csv.html')
+
+
+def faq(request):
+    if request.user.is_authenticated and check_student(request.user):
+       return render(request,'hr_features/faq.html')
+    else:
+        return redirect('student_login')
+
+def pitch(request):
+    if request.user.is_authenticated and check_student(request.user):
+       return render(request,'hr_features/pitch.html')
     else:
         return redirect('student_login')

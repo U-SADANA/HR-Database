@@ -2,15 +2,29 @@
 {% load static %}
 
 {% block css %}
+<style>
+  #sub_button{
+    background-color: #472a99;
+    border: 1px solid black;
+    margin-top: 5px;
+  }
 
+  .form-floating{
+    margin-top: 5px;
+    border: 1px solid black;
+  }
+ 
+</style>
 {% endblock %}
 
 
 {% block main %}
-<main class="form-signin" >
+<main class="form-signin"  >
     <form action='' method='POST' onSubmit="return checkPassword(this)">
       {% csrf_token %} 
-    <h4 class="text-center alert alert-info heading">ADD A STUDENT</h4>
+      <div class="circle">
+        <h2 class="circleDot">ADD A STUDENT</h2>
+    </div>
   
       <div class="form-floating">
           <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" required>

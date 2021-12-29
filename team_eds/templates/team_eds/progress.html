@@ -1,46 +1,148 @@
 {% extends 'team_eds/layout.html' %}
 {% load static %}
 
-{% block css %} {% endblock %}
+{% block css %} 
+<style>
+  body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2edf7;
+  }
+    .modal-header{
+        background-color:white;
+        color:black;
+        font-size:large;
+    }
+    .scope {
+      background-color: #472a99;
+      color: white;
+      text-align:left;
+    }
+
+
+</style>
+{% endblock %}
 
 {% block main %} 
 <div class="row">
     <div class="container mt-5">
-        <h4 class="text-center alert alert-info heading"  > HR CONTACT DETAILS</h4>
+        <div class="circle">
+            <h2 class="circleDot">HR CONTACT DETAILS</h2>
+        </div>
         
-        <table class="table table-striped" style="background-color:#472a99;">
-        <thead>
-
+       
+        <table class="table table-striped">
+        <thead style="background-color:#472a99;">
             <tr>
-            <th scope="col" class="scope">Name</th>
+            <th scope="col" class="scope">HR Name</th>
             <th scope="col" class="scope">Company Name</th>
             <th scope="col" class="scope">Contact</th>
             <th scope="col" class="scope">Status</th>
+            <th scope="col" class="scope">Details</th>
 
             </tr>
         </thead>
         <tbody>
             {% for h in hr_prog %}
-               
+                
             <tr>
+                
                 <td>{{h.fullname}}</td>
                 <td>{{h.companyname}}</td>
-                <td>{{h.email}}</td>
                 <td>{{h.mobile}}</td>
                 <td>{{h.status}}</td>
-                <td>{{h.interview}}</td>
-                <td>{{h.hrcount}}</td>
-                <td>{{h.dept}}</td>
-                <td>{{h.transport}}</td>
-                <td>{{h.extra_comments}}</td>
+            
+                <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#HR{{hr.pk}}" style="background-color:white; border-color:green"><i class="fa fa-angle-double-down fa-lg" style="color:green"></i></button>
+
+                    <div class="modal fade bd-example-modal-lg"id="HR{{hr.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title">HR DETAILS</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>                
+                            </div>
+                            <div class="modal-body">
+                                <table style="width:100%">
+                                    <tr>
+                                      <th>HR Name</th>
+                                      <td>{{h.fullname}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Company Name</th>
+                                      <td>{{h.companyname}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Contact</th>
+                                      <td>{{h.mobile}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Email</th>
+                                      <td>{{h.email}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Status</th>
+                                      <td>{{h.status}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Interview Mode</th>
+                                      <td>{{h.interview}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>HR Count</th>
+                                      <td>{{h.hrcount}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Department</th>
+                                      <td>{{h.dept}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Transport</th>
+                                      <td>{{h.transport}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Internship</th>
+                                      <td>{{h.internship}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Created on</th>
+                                      <td>{{h.dtoc}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Extra Comments</th>
+                                      <td>{{h.extra_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Address</th>
+                                      <td>{{h.address}}</td>
+                                    </tr>
+                                    
+                                    
+                                </table>
+                                    
+                            
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
             </tr>
-           
+            
         {% endfor %}
-           
         </tbody>
         </table>
     </div>
 </div>
 {% endblock %}
 
-{% block js %} {% endblock %}
+{% block js %} 
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+})
+
+</script>
+
+{% endblock %}

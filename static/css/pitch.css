@@ -1,0 +1,48 @@
+body {
+    padding: 2em;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2edf7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  summary {
+    padding: 1em;
+    background: #472a99;
+    color:white;
+    margin-bottom: 1em;
+    cursor: pointer;
+    outline: none;
+    border-radius: 0.3em;
+    font-weight: bold;
+  }
+    summary:hover {
+      background: #472a99;
+    }
+  
+  
+  details[open] summary ~ * {
+    animation: open 0.5s ease-in-out;
+  }
+  
+  @keyframes open {
+    from {
+      opacity: 0;
+      margin-top: -10px;
+    }
+    to {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+  .content {
+    margin-bottom: 2em;
+  }
+  

@@ -10,7 +10,7 @@ from .models import *
 from hr_features.models import *
 from .filters import OrderFilter
 import xlwt
-from django.contrib.auth.models import User
+
 
 def check_team_ed(user):
     if user.user_type == 'TEAM_ED':
@@ -143,12 +143,12 @@ def file_load_view(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['HR Name', 'Company name', 'Email', 'Mobile','Status','Interview','Hr count','Department Preference','Transport Preference','Extra comments','Internship']
+    columns = ['HR Name', 'Company name', 'Email', 'Mobile','Status','Interview','Hr count','Department Preference','Transport Preference','Extra comments','Internship','address']
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
     font_style = xlwt.XFStyle()
 
-    rows = Hr.objects.all().values_list('fullname', 'companyname', 'email', 'mobile','status','interview','hrcount','dept','transport','extra_comments','internship')
+    rows = Hr.objects.all().values_list('fullname', 'companyname', 'email', 'mobile','status','interview','hrcount','dept','transport','extra_comments','internship','address')
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):

@@ -10,6 +10,8 @@
 {% endblock %}
 
 {% block main %} 
+
+    
 <div class="row">
     <h4 class="table table-striped"> HR CONTACT DETAILS</h4>
     <div class="d-flex p-3">
@@ -46,6 +48,7 @@
                 <td>{% if hr.internship %}{% endif %}</td>
                 <td>{{hr.dtoc}}</td>
                 <td>{{hr.extra_comments}}</td>
+                <td>{{hr.address}}</td>
                <td><a href="{% url 'update_hr' id=hr.pk %}"><i class="fa fa-edit fa-lg" style=-"color:blue"></i></a>&nbsp;&nbsp;<a href="{% url 'delete_hr' id=hr.pk %}" onclick="return confirmDelete();"><i class="fa fa-trash fa-lg" style="color:red"></i></a></td>
                 <!--{% url 'delete_hr' id=hr.pk %}-->
             </tr>

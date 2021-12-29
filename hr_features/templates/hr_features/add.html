@@ -1,10 +1,24 @@
 {% extends 'hr_features/layout.html' %}
 {% load static %}
+
+{% block css %}
+<style>
+    .form-control{
+        border:1px solid black;
+    }
+    .form-select{
+        border:1px solid black;
+    }
+</style>
+{% endblock %}
+
 {% block main %}
 
 <div class="row">
     <div class="mx-auto" style="width: 80%;">
-        <h4 class="text-center alert alert-info">ADD HR Contact</h4>
+        <div class="circle">
+            <h2 class="circleDot">ADD HR CONTACT</h2>
+        </div>
         <form action="" method="POST">
             {% csrf_token %}
             <div class="row">
@@ -20,7 +34,7 @@
             <div class="row">
                 <div class="col-6">
                     <label for="email">Email ID</label>
-                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" >
                 </div>
                 <div class="col-6">
                     <label for="phno">Contact</label>
@@ -46,15 +60,15 @@
                     <div class="col-4">
                         <label for="interview"> Interview Preference</label>
                         <select class="form-select" name="interview" id="interview" >
-                            <option selected>------</option>
+                            <option  selected>------</option>
                             <option value="Offline">Offline</option>
-                            <option value="Online">Online</option>
-                            <option value="Undecided">Undecided</option>
+                            <option  value="Online">Online</option>
+                            <option  value="Undecided">Undecided</option>
                           </select>
                     </div>
                     <div class="col-4">
                         <label for="hrcount">HR Count</label>
-                        <input type="number" class="form-control" placeholder="HR Count" name="hrcount" id="hrcount" required>
+                        <input type="number" class="form-control" placeholder="HR Count" name="hrcount" id="hrcount" >
                     </div>
             </div>
             <br>
@@ -85,12 +99,24 @@
             <input class="form-check-input mt-0" type="checkbox" value="internship" name="internship">
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6">
                   <label>Extra Comments</label>
                   <div class="form-floating">
                     <textarea class="form-control"  id="comments" name="comments"></textarea>
                     <label for="floatingTextarea">Leave any Extra Comments</label>
                   </div>
+                </div>
 
+                <div class="col-6">
+
+                  <label>Address</label>
+                  <div class="form-floating">
+                    <textarea class="form-control"  id="address" name="address"></textarea>
+                    <label for="floatingTextarea">Fill in the Address</label>
+                  </div>
+                </div>
+            <div>
                 <input type="submit" class="btn btn-success center-block" value="Add">
             
         </form>
@@ -102,7 +128,14 @@
 {% block js %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
+    $(document).ready(function() {
+        $(window).keydown(function(event){
+          if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+          }
+        });
+      });
         
     $("#phno").change(function () {
         var phno = $(this).val();
@@ -141,7 +174,9 @@
             if (data.is_taken) {
                 document.getElementById('email').value=""
                 alert("A user with this Email Id already exists.");
+               
             }
+            return false;
             }
         });
     });

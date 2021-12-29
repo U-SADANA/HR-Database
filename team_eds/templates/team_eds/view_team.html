@@ -1,15 +1,24 @@
 {% extends 'team_eds/layout.html' %}
 {% load static %}
 
-{% block css %} {% endblock %}
+{% block css %} 
+<style>
+    .btn-primary{
+        background-color: #472a99;
+        border: 1px solid #472a99;
+    }
+</style>
+{% endblock %}
 
 {% block main %} 
 <div class="row">
-
-        <h4 class="text-center alert alert-info heading"> TEAM PROGRESS</h4>
+    <div class="container mt-5">
+        <div class="circle">
+            <h2 class="circleDot"> HR CONTACTS DETAILS</h2>
+        </div>
         
         <table class="table table-striped">
-        <thead >
+        <thead>
 
             <tr>
             <th scope="col">FullName</th>
@@ -26,7 +35,7 @@
            {% endfor %}
         </tbody>
         </table>
- 
+    </div>
 </div>
 {% endblock %}
 

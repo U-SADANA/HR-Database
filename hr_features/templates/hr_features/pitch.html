@@ -1,0 +1,94 @@
+{% extends 'hr_features/layout.html' %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/pitch.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<main>
+  <div class="circle">
+    <h2 class="circleDot">SAMPLE HR PITCH</h2>
+</div>
+    <details>
+      <summary>
+        Call the HR [ office hours ]
+      </summary>
+      <div class="content">
+        <p>Good Morning/Good Afternoon. Am I speaking to (Mr./Ms). (HR Name) from (COMPANY NAME)?</p>
+      </div>
+    </details>
+    <details>
+      <summary>
+        If yes
+      </summary>
+      <div class="content">
+        <p>Hello, (Sir/Ma'am). My name is (YOUR NAME) and I am calling on the behalf of Mr. Muralidharan Sir, Chief Placement Officer, Sri Venkateswara College of Engineering, Sriperumbudur.
+            Could I please borrow 5 minutes of your time?</p>
+      </div>
+    </details>
+    <details>
+      <summary>
+        If yes
+      </summary>
+      <div class="content">
+        <p>
+            Sir/Ma'am, we are organizing an event called the MOCK PLACEMENTS.
+    This event is held exclusively for the pre-final year students of our college and assists them in preparing for the actual placements which will be held for them next year.
+    The event aims to help students understand the requirements of the industry, by making them experience an one-on-one interview-like environment.
+         </p>
+
+          <p>
+            (Sir/Ma'am), this is the 20th successive year of our event and college would be extremely greatful to you and your company if you could take
+            out some time on Sunday, the 23rd of February to interview our students and make them aware about industry requirements and areas of 
+           potential improvement.
+        </p>
+        <p>
+            The college shall be providing you a pick up and drop service from your desired location on the 23rd.
+		The event starts from 9:00 A.M onwards and we will drop you back at your convenient time.
+		We would also be arranging breakfast, lunch and mid-day snacks for you.
+		You can choose to interview students from any department of your choice.
+		The number of students to be interviewed is also totally upto you, (Sir/Ma'am).
+		This event would also be an opportunity for you to gauge the level of the students and gain insights about our college.
+        </p>
+      </div>
+    </details>
+    <details>
+      <summary>
+        Do you have any queries for me, (Sir/Ma'am)?
+      </summary>
+      <div class="content">
+        <p>Refer FAQs</p>
+      </div>
+    </details>
+    <details>
+        <summary>
+            Could I please have your E-Mail ID so that I can send you a formal invite?
+        </summary>
+        <div class="content">
+          <p>(Note down the mail ID)<br>
+            Thank you so much for your time and patience, (Sir/Ma'am). We will shortly send you a mail regarding the event details.
+            Also, wishing you a very happy new year, (Sir/Ma'am). (Pause for him/her to wish me back)
+            Have a nice day, (Sir/Ma'am).
+            Thank you.<br>
+            (End Call)</p>
+        </div>
+      </details>
+      <details>
+        <summary>
+           If no
+        </summary>
+        <div class="content">
+          <p>I am so sorry to disturb you, (Sir/Ma'am). What time would it be suitable to call you back?<br>
+            (Note down time)
+            Thank you, (Sir/Ma'am).<br>
+            (End Call) </p>
+        </div>
+      </details>
+  </main>
+{% endblock %}
+
+
+{% block js %}
+
+{% endblock %}
