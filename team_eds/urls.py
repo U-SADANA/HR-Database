@@ -11,5 +11,7 @@ urlpatterns = [
     path('teams_eds_view_allhrs/',views.teams_eds_view_allhrs,name='teams_eds_view_allhrs'),
     path('transport_filter/',views.transport_filter,name='transport_filter'),
     path('file_load_view/',views.file_load_view,name='file_load_view'),
+    path('statistics/',views.statistics,name='statistics'),
+    path('teams_eds_statistics/<str:email>',views.teams_eds_statistics,name='teams_eds_statistics'),
 
 ]

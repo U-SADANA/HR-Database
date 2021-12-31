@@ -13,4 +13,6 @@ urlpatterns = [
     path('Import_csv/', views.Import_csv,name="Import_csv"),  
     path('faq/', views.faq,name="faq"),  
     path('pitch/', views.pitch,name="pitch"),  
+    path('stud_stat/', views.stud_stat,name="stud_stat"),  
+    path('filter/', views.filter,name="filter"),  
 ]

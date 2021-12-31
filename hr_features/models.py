@@ -25,6 +25,10 @@ TRANSPORT_CHOICE=(
     ('College Cab','College Cab'),
 )
 
+BRANCH_CHOICE=(
+    ('Circuit Branches','Circuit Branches'),
+    ('Non Circuit Branches','Non Circuit Branches'),
+)
 class Hr(models.Model):
     added_by=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     fullname=models.CharField( max_length=70)
@@ -40,3 +44,4 @@ class Hr(models.Model):
     address=models.TextField(null=True)
     internship=models.BooleanField(default=False)
     dtoc=models.DateTimeField(auto_now_add=True,null=True)
+    branch=models.CharField(choices=BRANCH_CHOICE,max_length=70,null=True)

@@ -8,6 +8,7 @@ from accounts.models import User
 from .models import *
 from django.http import JsonResponse
 from django.contrib import messages
+from .stud_filter import OrderFilter
 
 
 from .models import Hr
@@ -45,6 +46,7 @@ def add_hr(request):
             interview=request.POST['interview']
             hrcount=0
             transport=request.POST['transport']
+            branch=request.POST['branch']
             
             if  request.POST['hrcount'] != "":
                 hrcount=int(request.POST['hrcount'])
@@ -62,7 +64,7 @@ def add_hr(request):
                 address=request.POST['address']
            
             hr=Hr(added_by=request.user,fullname=fullname,companyname=companyname,email=email,mobile=mobile,status=status,
-            interview=interview,hrcount=hrcount,transport=transport,extra_comments=extra_comments,address=address)
+            interview=interview,hrcount=hrcount,transport=transport,extra_comments=extra_comments,address=address,branch=branch)
             
             dept=""
             if 'AUT' in request.POST:
@@ -116,6 +118,7 @@ def update_hr(request,id):
             interview=request.POST['interview']
             hrcount=0
             transport=request.POST['transport']
+            branch=request.POST['branch']
 
             if  request.POST['hrcount'] != "":
                 hrcount=int(request.POST['hrcount'])
@@ -166,6 +169,7 @@ def update_hr(request,id):
             hr.extra_comments=extra_comments
             hr.address=address
             hr.dept=dept
+            hr.branch=branch
 
             messages.success(request,"HR Contact has been Edited Successfully!")
             hr.save()
@@ -218,8 +222,8 @@ def Import_csv(request):
                  
                 obj = Hr.objects.create(added_by=request.user,fullname=dbframe.fullname,companyname=dbframe.companyname, email=dbframe.email,
                                                 mobile=dbframe.mobile, status=dbframe.status, interview=dbframe.interview, hrcount=dbframe.hrcount, 
-                                                dept=dbframe.dept, transport=dbframe.transport, extra_comments=dbframe.extra_comments,
-                                                internship=dbframe.internship)
+                                                dept=dbframe.dept, transport=dbframe.transport, extra_comments=dbframe.extra_comments,address=dbframe.address,
+                                                internship=dbframe.internship,branch=dbframe.branch)
                 print(type(obj))
                 obj.save()
  
@@ -243,5 +247,60 @@ def faq(request):
 def pitch(request):
     if request.user.is_authenticated and check_student(request.user):
        return render(request,'hr_features/pitch.html')
+    else:
+        return redirect('student_login')
+
+def stud_stat(request):
+    if request.user.is_authenticated and check_student(request.user):
+        hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
+        name=request.user
+        NC=0
+        BC=0
+        WN=0
+        CNR=0 
+        CP=0 
+        CA=0 
+        EAR=0 
+        ED=0 
+        EC=0
+        count=0
+        status_list={}
+        for h in hrs:
+            if h.status=="Not Called":
+                NC=NC+1
+            if h.status=="Blacklisted Contact":
+                BC=BC+1
+            if h.status=="Wrong Number":
+                WN=WN+1
+            if h.status=="Called/Not Reachable":
+                CNR=CNR+1
+            if h.status=="Called/Postponed":
+                CP=CP+1
+            if h.status=="Called/Accepted":
+                CA=CA+1
+            if h.status=="Emailed/Awaiting Response":
+                EAR=EAR+1
+            if h.status=="Emailed/Declined":
+                ED=ED+1
+            if h.status=="Emailed/Confirmed":
+                EC=EC+1
+
+            count=NC+BC+WN+CNR+CP+CA+EAR+ED+EC
+        
+        status_list={"NC":NC,"BC":BC,"WN":WN,"CNR":CNR,"CP":CP,"CA":CA,"EAR":EAR,"ED":ED,"EC":EC}
+        return render(request,'hr_features/student_stat.html',{"status_list":status_list,"count":count,"name":name})
+    else:
+        return redirect('student_login')
+
+
+
+def filter(request):
+    if request.user.is_authenticated and check_student(request.user):
+        hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
+        
+        myFilter=OrderFilter(request.GET, queryset=hrs)
+        hrs=myFilter.qs
+
+        return render(request,'hr_features/filter.html',{"hrs":hrs,"myFilter":myFilter})
     else:
         return redirect('student_login')

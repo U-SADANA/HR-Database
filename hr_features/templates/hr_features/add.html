@@ -44,9 +44,9 @@
                 <div class="row">
                     <div class="col-4">
                         <label for="status">Status</label>
-                        <select class="form-select" name="status" id="status" >
-                            <option selected>-------</option>
-                            <option value="Not Called">Not Called</option>
+                        <select class="form-select" name="status" id="status" required>
+                            
+                            <option selected value="Not Called">Not Called</option>
                             <option value="Blacklisted Contact">Blacklisted Contact</option>
                             <option value="Wrong Number">Wrong Number</option>
                             <option value="Called/Not Reachable">Called/Not Reachable</option>
@@ -84,7 +84,7 @@
             <input class="form-check-input mt-0" type="checkbox" value="MECH" name="MECH">MECH
             <br>
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <label for="transport">Transport Preference</label>
             
                     <select class="form-select" name="transport" id="transport" >
@@ -93,12 +93,24 @@
                         <option value="College Cab">College Cab</option>
                       </select>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    <label for="branch"> Branch Preference</label>
+                    <select class="form-select" name="branch" id="branch" >
+                        <option  selected>------</option>
+                        <option value="Circuit Branches">Circuit Branches</option>
+                        <option  value="Non Circuit Branches">Non Circuit Branches</option>
+                        
+                      </select>
+                </div>
+                <div class="col-4">
                     <br>
                     <label>Internship</label>
-            <input class="form-check-input mt-0" type="checkbox" value="internship" name="internship">
+                    <input class="form-check-input mt-0" type="checkbox" value="internship" name="internship">
                 </div>
+
+                
             </div>
+
             <div class="row">
                 <div class="col-6">
                   <label>Extra Comments</label>
@@ -140,8 +152,8 @@
     $("#phno").change(function () {
         var phno = $(this).val();
         const regexExp = /^[6-9]\d{9}$/;
-        const landregex=/^[0-9]{8}$/;
-        if (!(regexExp.test(phno)||landregex.test(phno))){ 
+        
+        if (!(regexExp.test(phno))){ 
             document.getElementById('phno').value=""
             alert("Invalid Phone Number");
             }

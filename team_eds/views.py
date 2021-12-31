@@ -89,11 +89,11 @@ def view_hrs(request):
 def teams_eds_view_allhrs(request):
     if request.user.is_authenticated and check_team_ed(request.user):
         hrs=Hr.objects.order_by('added_by').all()
-
+        
         myFilter=OrderFilter(request.GET, queryset=hrs)
         hrs=myFilter.qs
 
-        return render(request,'team_eds/view_allhrs.html',{"hrs":hrs,"myFilter":myFilter })
+        return render(request,'team_eds/view_allhrs.html',{"hrs":hrs,"myFilter":myFilter})
     else:
         return redirect('teams_eds_login')
 
@@ -143,12 +143,12 @@ def file_load_view(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['HR Name', 'Company name', 'Email', 'Mobile','Status','Interview','Hr count','Department Preference','Transport Preference','Extra comments','Internship','address']
+    columns = ['HR Name', 'Company name', 'Email', 'Mobile','Status','Interview','Hr count','Department Preference','Transport Preference','Extra comments','Internship','address','branch']
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
     font_style = xlwt.XFStyle()
 
-    rows = Hr.objects.all().values_list('fullname', 'companyname', 'email', 'mobile','status','interview','hrcount','dept','transport','extra_comments','internship','address')
+    rows = Hr.objects.all().values_list('fullname', 'companyname', 'email', 'mobile','status','interview','hrcount','dept','transport','extra_comments','internship','address','branch')
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):
@@ -156,3 +156,135 @@ def file_load_view(request):
 
     wb.save(response)
     return response
+
+
+def statistics(request):
+    if request.user.is_authenticated and check_team_ed(request.user):
+        hrs=Hr.objects.order_by('added_by').all()
+        NC=0
+        BC=0
+        WN=0
+        CNR=0 
+        CP=0 
+        CA=0 
+        EAR=0 
+        ED=0 
+        EC=0
+        count=0
+        status_list={}
+        for h in hrs:
+            if h.status=="Not Called":
+                NC=NC+1
+            if h.status=="Blacklisted Contact":
+                BC=BC+1
+            if h.status=="Wrong Number":
+                WN=WN+1
+            if h.status=="Called/Not Reachable":
+                CNR=CNR+1
+            if h.status=="Called/Postponed":
+                CP=CP+1
+            if h.status=="Called/Accepted":
+                CA=CA+1
+            if h.status=="Emailed/Awaiting Response":
+                EAR=EAR+1
+            if h.status=="Emailed/Declined":
+                ED=ED+1
+            if h.status=="Emailed/Confirmed":
+                EC=EC+1
+
+            count=NC+BC+WN+CNR+CP+CA+EAR+ED+EC
+        
+        status_list={"NC":NC,"BC":BC,"WN":WN,"CNR":CNR,"CP":CP,"CA":CA,"EAR":EAR,"ED":ED,"EC":EC}
+
+        team=TeamEDS.objects.filter(head_user=request.user).first()
+        students=TeamMatch.objects.filter(team_ed=team).all()
+        hr_stud=[]
+        status_list_team={}
+        for student in students:
+                hr_stud.append(Hr.objects.all().filter(added_by=student.student_users))
+        teamcount=0
+        TNC=0
+        TBC=0
+        TWN=0
+        TCNR=0 
+        TCP=0 
+        TCA=0 
+        TEAR=0 
+        TED=0 
+        TEC=0
+        
+        status_list_team={}
+        for hrs in hr_stud:
+            for h in hrs: 
+                if h.status=="Not Called":
+                    TNC=TNC+1
+                if h.status=="Blacklisted Contact":
+                    TBC=TBC+1
+                if h.status=="Wrong Number":
+                    TWN=TWN+1
+                if h.status=="Called/Not Reachable":
+                    TCNR=TCNR+1
+                if h.status=="Called/Postponed":
+                    TCP=TCP+1
+                if h.status=="Called/Accepted":
+                    TCA=TCA+1
+                if h.status=="Emailed/Awaiting Response":
+                    TEAR=TEAR+1
+                if h.status=="Emailed/Declined":
+                    TED=TED+1
+                if h.status=="Emailed/Confirmed":
+                    TEC=TEC+1
+
+                teamcount=TNC+TBC+TWN+TCNR+TCP+TCA+TEAR+TED+TEC
+
+                status_list_team={"TNC":TNC,"TBC":TBC,"TWN":TWN,"TCNR":TCNR,"TCP":TCP,"TCA":TCA,"TEAR":TEAR,"TED":TED,"TEC":TEC}
+        return render(request,'team_eds/statistics.html',{"status_list":status_list,"count":count,"status_list_team":status_list_team,"teamcount":teamcount})
+    else:
+        return redirect('teams_eds_login')
+
+
+
+def teams_eds_statistics(request,email):
+    if request.user.is_authenticated and check_team_ed(request.user):
+        student=User.objects.filter(email=email).first()
+        hr_prog=Hr.objects.filter(added_by=student).all()
+        name=student
+        count=0
+        NC=0
+        BC=0
+        WN=0
+        CNR=0 
+        CP=0 
+        CA=0 
+        EAR=0 
+        ED=0 
+        EC=0
+        status_list={}
+        for h in hr_prog:
+                if h.status=="Not Called":
+                    NC=NC+1
+                if h.status=="Blacklisted Contact":
+                    BC=BC+1
+                if h.status=="Wrong Number":
+                    WN=WN+1
+                if h.status=="Called/Not Reachable":
+                    CNR=CNR+1
+                if h.status=="Called/Postponed":
+                    CP=CP+1
+                if h.status=="Called/Accepted":
+                    CA=CA+1
+                if h.status=="Emailed/Awaiting Response":
+                    EAR=EAR+1
+                if h.status=="Emailed/Declined":
+                    ED=ED+1
+                if h.status=="Emailed/Confirmed":
+                    EC=EC+1
+
+                count=NC+BC+WN+CNR+CP+CA+EAR+ED+EC
+
+                status_list={"NC":NC,"BC":BC,"WN":WN,"CNR":CNR,"CP":CP,"CA":CA,"EAR":EAR,"ED":ED,"EC":EC}
+        return render(request,'team_eds/student_statistics.html',{"status_list":status_list,"count":count,"name":name})
+    else:
+        return redirect('teams_eds_login')
+
+

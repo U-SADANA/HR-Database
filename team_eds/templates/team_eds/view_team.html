@@ -30,7 +30,8 @@
             <tr>
                 <td>{{stud.student_users.fullname}}</td>
                 <td>{{stud.student_users.email}}</td>
-                <td><a href="{% url 'teams_eds_progress' email=stud.student_users.email %}"><button type="button" class="btn btn-primary">Progress</button></a></td>
+                <td><a href="{% url 'teams_eds_progress' email=stud.student_users.email %}"><button type="button" class="btn btn-primary">PROGRESS</button></a></td>
+                <td><a href="{% url 'teams_eds_statistics' email=stud.student_users.email %}"><button type="button" class="btn btn-primary">STATISTICS</button></a></td>
             </tr>
            {% endfor %}
         </tbody>

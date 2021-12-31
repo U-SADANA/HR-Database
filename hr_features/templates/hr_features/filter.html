@@ -1,38 +1,78 @@
-{% extends 'team_eds/layout.html' %}
+{% extends 'hr_features/layout.html' %}
 {% load static %}
 
 {% block css %}
+<style>
 
+    .card{
+        background-color: #ece5f5;
+        border: 2px solid #472a99;
+    }
+    body{
+        font-size:0.8em;
+    }
+
+    .label{
+        font-weight:bold;
+        color:#472a99;
+    }
+    .col-1{
+        margin-top:1em;
+    }
+</style>
 {% endblock %}
 
 {% block main %} 
 
 <div class="row">
     <div class="circle">
-        <h2 class="circleDot">GLOBAL HR CONTACT</h2>
+        <h2 class="circleDot"> FILTER </h2>
     </div>
+
+    <div class="card text-center color">
         
+          <p class="card-text"><form class="form-inline" method="GET" style="font-size: small;">
         <div class="row">
-            <div class="col">
+            <div class="col-2">
+                <label class="label">Status</label><br>
+                {{myFilter.form.status}}
+            </div>
+            <div class="col-2">
+                <label class="label">Interview</label><br>
+                {{myFilter.form.interview}}
+            </div>
+            <div class="col-2">
+                <label class="label">Branch</label><br>
+                {{myFilter.form.branch}}
+            </div>
+            <div class="col-2">
                 
-                    <div class="d-flex flex-wrap">
-                    <form class="form-inline" method="GET" style="font-size: small;">
-                        {{myFilter.form}}
-                        <button class="btn btn-primary btn-sm" type="submit">Search</button>
-                        <a href="{% url 'file_load_view' %}"> &nbsp;<i class="fa fa-download fa-lg" style="color:red"></i></a>
-                    </form>
-                    <br><br><br>
-              
-                <div>
+                <label class="label">Transport</label><br>
+                {{myFilter.form.transport}}
+            </div>
+            <div class="col-2">
+                
+                <label class="label">Company</label><br>
+                {{myFilter.form.companyname}}
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary btn-sm" type="submit">Search</button>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary btn-sm" type="button" onclick="document.location='{% url 'filter' %}'">Reset</button>
             </div>
         </div>
+        </form>
+        </p>   
+        
+    </div>
+        
 
         
         <table class="table table-striped " >
-        <thead style="background-color:#472a99;">
+        <thead style="background-color:#472a99; color:white;">
 
             <tr>
-            <th scope="col" class="scope">Added By</th>
             <th scope="col" class="scope">HR Name</th>
             <th scope="col" class="scope">Company Name</th>
             <th scope="col" class="scope">Email</th>
@@ -53,7 +93,7 @@
                 {% for h in hrs %}
 
             <tr>
-                <td>{{h.added_by.fullname}}</td>
+                
                 <td>{{h.fullname}}</td>
                 <td>{{h.companyname}}</td>
                 <td>{{h.email}}</td>
