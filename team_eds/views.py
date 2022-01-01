@@ -10,7 +10,6 @@ from .models import *
 from hr_features.models import *
 from .filters import OrderFilter
 import xlwt
-from .forms import InputForm
 
 
 def check_team_ed(user):
@@ -153,7 +152,7 @@ def file_load_view(request):
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, row[col_num], font_style)
-
+    
     wb.save(response)
     return response
 

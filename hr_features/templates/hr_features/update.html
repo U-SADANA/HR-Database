@@ -181,7 +181,7 @@
         
     $("#phno").change(function () {
         var phno = $(this).val();
-        const regexExp = /^[6-9]\d{9}$/;
+        const regexExp = /^[0-9]{10}$/;
         
         if (!(regexExp.test(phno))){ 
             document.getElementById('phno').value=""

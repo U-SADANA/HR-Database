@@ -1,6 +1,4 @@
-from django.shortcuts import render
 from students.views import check_student
-
 from django.shortcuts import render,redirect
 from django.contrib import auth
 from django.conf import settings
@@ -9,9 +7,6 @@ from .models import *
 from django.http import JsonResponse
 from django.contrib import messages
 from .stud_filter import OrderFilter
-
-
-from .models import Hr
 import datetime as dt
 import pandas as pd
 import os
@@ -181,7 +176,7 @@ def update_hr(request,id):
         return redirect('student_login')
 
 def delete_hr(request,id):
-    context ={}
+    
     if request.user.is_authenticated and check_student(request.user):
         hr=Hr.objects.filter(pk=id).first()
         hr.delete()
@@ -224,7 +219,7 @@ def Import_csv(request):
                                                 mobile=dbframe.mobile, status=dbframe.status, interview=dbframe.interview, hrcount=dbframe.hrcount, 
                                                 dept=dbframe.dept, transport=dbframe.transport, extra_comments=dbframe.extra_comments,address=dbframe.address,
                                                 internship=dbframe.internship,branch=dbframe.branch)
-                print(type(obj))
+                messages.success(request,"Contacts have been Imported Successfully!")
                 obj.save()
  
             return render(request, 'hr_features/Import_csv.html', {
