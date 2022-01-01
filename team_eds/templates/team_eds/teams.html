@@ -1,0 +1,99 @@
+{% extends 'team_eds/layout.html' %}
+{% load static %}
+
+{% block css %} 
+
+<link href="{% static 'css/team.css' %}" rel="stylesheet">
+<link href="{% static 'css/signin.css' %}" rel="stylesheet">
+
+<style>
+    .btn-primary{
+        font:
+        background-color: transparent;
+        border: 0px solid transparent;
+    }
+    .flip-card {
+        background-color: transparent;
+        width: 300px;
+        height: auto;
+        perspective: 1000px;
+      }
+      
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
+      
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      
+      .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+      
+      .flip-card-front {
+        background-color: #bbb;
+        color: black;
+      }
+      
+      .flip-card-back {
+        background-color: #2980b9;
+        color: white;
+        transform: rotateY(180deg);
+      }
+</style>
+{% endblock %}
+
+{% block main %} 
+       
+<div class="bg text-center">
+    
+    
+        <p class="firstLine"> S &nbsp; E &nbsp; A &nbsp; R &nbsp; C &nbsp; H &nbsp;  </p>
+        
+        <form action="{% url 'teams' %}" method="POST">
+            {% csrf_token %}
+           
+            <div class="form-floating">
+                <input type="text" class="form-control space-up" id="email" placeholder="Team Name" name="email" required>
+                <label for="floatingInput">Team Name</label><br>
+                <button type="submit" class="btn btn-primary">SEARCH</button>
+              </div>
+              
+              
+
+              
+        </form>
+        <br>
+        <br>
+        <br>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <p class="firstLine">FIND TEAMS </p>
+              </div>
+              <div class="flip-card-back">
+                {% for team in team_names %}
+                <h6>{{team.team_name}}<h6>
+               
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block js %} {% endblock %}

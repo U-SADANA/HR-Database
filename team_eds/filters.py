@@ -9,4 +9,4 @@ class OrderFilter(django_filters.FilterSet):
 
     class Meta:
         model= Hr
-        fields=['companyname','status','interview','transport']
+        fields=['companyname','status','interview','transport','branch']

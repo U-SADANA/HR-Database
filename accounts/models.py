@@ -8,6 +8,7 @@ from django.conf import settings
 UserChoice=(
     ('TEAM_ED','TEAM_ED'),
     ('VOLUNTEER','VOLUNTEER'),
+
 )
 class MyUserManager(BaseUserManager):
     def create_user(self, email,password=None):

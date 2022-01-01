@@ -10,6 +10,7 @@ from .models import *
 from hr_features.models import *
 from .filters import OrderFilter
 import xlwt
+from .forms import InputForm
 
 
 def check_team_ed(user):
@@ -89,7 +90,6 @@ def view_hrs(request):
 def teams_eds_view_allhrs(request):
     if request.user.is_authenticated and check_team_ed(request.user):
         hrs=Hr.objects.order_by('added_by').all()
-        
         myFilter=OrderFilter(request.GET, queryset=hrs)
         hrs=myFilter.qs
 
@@ -238,7 +238,7 @@ def statistics(request):
                 teamcount=TNC+TBC+TWN+TCNR+TCP+TCA+TEAR+TED+TEC
 
                 status_list_team={"TNC":TNC,"TBC":TBC,"TWN":TWN,"TCNR":TCNR,"TCP":TCP,"TCA":TCA,"TEAR":TEAR,"TED":TED,"TEC":TEC}
-        return render(request,'team_eds/statistics.html',{"status_list":status_list,"count":count,"status_list_team":status_list_team,"teamcount":teamcount})
+        return render(request,'team_eds/statistics.html',{"status_list":status_list,"count":count,"status_list_team":status_list_team,"teamcount":teamcount,"team":team})
     else:
         return redirect('teams_eds_login')
 
@@ -288,3 +288,61 @@ def teams_eds_statistics(request,email):
         return redirect('teams_eds_login')
 
 
+def teams(request):
+    if request.method == 'POST':
+            email=request.POST['email']
+            print(email)
+            team=TeamEDS.objects.filter(team_name=email).first()
+            students=TeamMatch.objects.filter(team_ed=team).all()
+            hr_stud=[]
+            status_list={}
+            for student in students:
+                    hr_stud.append(Hr.objects.all().filter(added_by=student.student_users))
+            count=0
+            TNC=0
+            TBC=0
+            TWN=0
+            TCNR=0 
+            TCP=0 
+            TCA=0 
+            TEAR=0 
+            TED=0 
+            TEC=0
+            
+            for hrs in hr_stud:
+                for h in hrs: 
+                    if h.status=="Not Called":
+                        TNC=TNC+1
+                    if h.status=="Blacklisted Contact":
+                        TBC=TBC+1
+                    if h.status=="Wrong Number":
+                        TWN=TWN+1
+                    if h.status=="Called/Not Reachable":
+                        TCNR=TCNR+1
+                    if h.status=="Called/Postponed":
+                        TCP=TCP+1
+                    if h.status=="Called/Accepted":
+                        TCA=TCA+1
+                    if h.status=="Emailed/Awaiting Response":
+                        TEAR=TEAR+1
+                    if h.status=="Emailed/Declined":
+                        TED=TED+1
+                    if h.status=="Emailed/Confirmed":
+                        TEC=TEC+1
+
+                    count=TNC+TBC+TWN+TCNR+TCP+TCA+TEAR+TED+TEC
+
+                    status_list={"TNC":TNC,"TBC":TBC,"TWN":TWN,"TCNR":TCNR,"TCP":TCP,"TCA":TCA,"TEAR":TEAR,"TED":TED,"TEC":TEC}
+            
+                    
+            return render(request,'team_eds/team_stat_check.html',{"status_list":status_list,"count":count})
+    else:
+        return redirect('teams_eds_login')
+    
+
+def teams_prog(request):
+    if request.user.is_authenticated and check_team_ed(request.user):
+        team_names=TeamEDS.objects.all()
+        return render(request,'team_eds/teams.html',{"team_names":team_names})
+    else:
+        return redirect('teams_eds_login')

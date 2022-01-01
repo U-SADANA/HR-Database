@@ -8,5 +8,3 @@ class TeamEDS(models.Model):
 class TeamMatch(models.Model):
     team_ed=models.ForeignKey(TeamEDS,on_delete=models.CASCADE)
     student_users=models.ForeignKey(User,on_delete=models.CASCADE)
-
-    

@@ -199,7 +199,7 @@ def hr_email(request):
 
 def show_hr_modal(request):
     if request.user.is_authenticated and check_student(request.user):
-       hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
+       hrs=Hr.objects.filter(added_by=request.user).order_by('-dtoc').all()
        return render(request,'hr_features/show_modal.html',{"hrs":hrs})
     else:
         return redirect('student_login')
@@ -296,8 +296,7 @@ def stud_stat(request):
 
 def filter(request):
     if request.user.is_authenticated and check_student(request.user):
-        hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
-        
+        hrs=Hr.objects.filter(added_by=request.user).order_by('-dtoc').all()
         myFilter=OrderFilter(request.GET, queryset=hrs)
         hrs=myFilter.qs
 

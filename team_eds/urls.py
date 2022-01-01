@@ -13,5 +13,7 @@ urlpatterns = [
     path('file_load_view/',views.file_load_view,name='file_load_view'),
     path('statistics/',views.statistics,name='statistics'),
     path('teams_eds_statistics/<str:email>',views.teams_eds_statistics,name='teams_eds_statistics'),
+    path('teams_prog/',views.teams_prog,name='teams_prog'),
+    path('teams/',views.teams,name='teams'),
 
 ]

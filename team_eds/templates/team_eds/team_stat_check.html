@@ -1,0 +1,152 @@
+{% extends 'team_eds/layout.html' %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/statistics.css' %}" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block main %} 
+
+<div class="circle">
+    <h2 class="circleDot"> HR STATISTICS</h2>
+</div>
+<div class="row stats">
+
+    <div class="col">
+      <div class="statContainer blue shadow-sm">
+        <div class="title text-center">NOT CALLED</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="ont-weight-bold">{{status_list.TNC}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer yellow shadow-sm">
+        <div class="title text-center">BLACKLISTED CONTACT</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="ont-weight-bold">{{status_list.TBC}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer fountainBlue shadow-sm">
+        <div class="title text-center">WRONG NUMBER</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TWN}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer lightBlue shadow-sm">
+        <div class="title text-center">CALLED/NOT REACHABLE</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TCNR}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer purple shadow-sm">
+        <div class="title text-center">CALLED/POSTPONES</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TCP}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer pink shadow-sm">
+        <div class="title text-center">CALLED/ACCEPTED</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TCA}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer orange shadow-sm">
+        <div class="title text-center">EMAILED/AWAITING RESPONSE</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TEAR}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="statContainer pink shadow-sm">
+        <div class="title text-center">EMAILED/DECLINED</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TED}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="statContainer orange shadow-sm">
+        <div class="title text-center">EMAILED/CONFIRMED</div>
+        <div class="d-flex">
+          <div class="p-2 flex-fill text-center">TOTAL </br>
+            <h5 class="font-weight-bold">{{count}}</h5>
+          </div>
+          <div class="p-2 flex-fill text-center status">STATISTICS </br>
+            <h5 class="font-weight-bold">{{status_list.TEC}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>
+<div>
+    <br><br>
+</div>
+
+  
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
