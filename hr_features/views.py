@@ -7,11 +7,10 @@ from .models import *
 from django.http import JsonResponse
 from django.contrib import messages
 from .stud_filter import OrderFilter
-import datetime as dt
-import pandas as pd
-import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+import pandas as pd
+
 
 def validate_email_hr(request):
     email = request.GET.get('email', None)
@@ -194,42 +193,76 @@ def hr_email(request):
 
 def show_hr_modal(request):
     if request.user.is_authenticated and check_student(request.user):
-       hrs=Hr.objects.filter(added_by=request.user).order_by('-dtoc').all()
-       return render(request,'hr_features/show_modal.html',{"hrs":hrs})
+        hrs=Hr.objects.filter(added_by=request.user).order_by('dtoc').all()
+        name=request.user
+        NC=0
+        BC=0
+        WN=0
+        CNR=0 
+        CP=0 
+        CA=0 
+        EAR=0 
+        ED=0 
+        EC=0
+        count=0
+        status_list={}
+        for h in hrs:
+            if h.status=="Not Called":
+                NC=NC+1
+            if h.status=="Blacklisted Contact":
+                BC=BC+1
+            if h.status=="Wrong Number":
+                WN=WN+1
+            if h.status=="Called/Not Reachable":
+                CNR=CNR+1
+            if h.status=="Called/Postponed":
+                CP=CP+1
+            if h.status=="Called/Accepted":
+                CA=CA+1
+            if h.status=="Emailed/Awaiting Response":
+                EAR=EAR+1
+            if h.status=="Emailed/Declined":
+                ED=ED+1
+            if h.status=="Emailed/Confirmed":
+                EC=EC+1
+
+            count=NC+BC+WN+CNR+CP+CA+EAR+ED+EC
+        
+        status_list={"NC":NC,"BC":BC,"WN":WN,"CNR":CNR,"CP":CP,"CA":CA,"EAR":EAR,"ED":ED,"EC":EC}
+        
+        hrs=Hr.objects.filter(added_by=request.user).order_by('-dtoc').all()
+        return render(request,'hr_features/show_modal.html',{"hrs":hrs,"status_list":status_list,"count":count,"name":name})
     else:
         return redirect('student_login')
 
-
-def Import_csv(request):
-    print('s')               
-    try:
-        if request.method == 'POST' and request.FILES['myfile']:
-            myfile = request.FILES['myfile']   
-            fs = FileSystemStorage()
-            filename = fs.save(myfile.name, myfile)
-            uploaded_file_url = fs.url(filename)
-            excel_file = uploaded_file_url
-            print(excel_file) 
-            empexceldata = pd.read_csv("."+excel_file,encoding='utf-8')
-            print(type(empexceldata))
-            dbframe = empexceldata
-            for dbframe in dbframe.itertuples():
-                 
-                obj = Hr.objects.create(added_by=request.user,fullname=dbframe.fullname,companyname=dbframe.companyname, email=dbframe.email,
-                                                mobile=dbframe.mobile, status=dbframe.status, interview=dbframe.interview, hrcount=dbframe.hrcount, 
-                                                dept=dbframe.dept, transport=dbframe.transport, extra_comments=dbframe.extra_comments,address=dbframe.address,
-                                                internship=dbframe.internship,branch=dbframe.branch)
-                messages.success(request,"Contacts have been Imported Successfully!")
+def Import_csv(request):               
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']   
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        excel_file = uploaded_file_url
+        print(excel_file) 
+        empexceldata = pd.read_excel("."+excel_file)
+        print(type(empexceldata))
+        dbframe = empexceldata
+        count=0
+        for dbframe in dbframe.itertuples():
+            if not Hr.objects.filter(email=dbframe.email).exists() and not Hr.objects.filter(mobile=dbframe.mobile).exists():
+                obj = Hr(added_by=request.user,fullname=str(dbframe.fullname),companyname=str(dbframe.companyname),email=dbframe.email,
+                                            mobile=dbframe.mobile,status=str(dbframe.status), interview=str(dbframe.interview), hrcount=dbframe.hrcount, 
+                                                dept=str(dbframe.dept), transport=str(dbframe.transport), extra_comments=str(dbframe.extra_comments),address=str(dbframe.address),
+                                                internship=str(dbframe.internship),branch=str(dbframe.branch))
+                if obj.status=='':
+                    obj.status='Not Called'
                 obj.save()
- 
-            return render(request, 'hr_features/Import_csv.html', {
-                'uploaded_file_url': uploaded_file_url
-            })    
+                count=count+1
+                
 
+        messages.success(request,str(count)+ " Contacts have been Imported Successfully!")   
+            
+        return redirect('show_hr_modal')    
 
-    except Exception as identifier:            
-        print(identifier)
-     
     return render(request, 'hr_features/Import_csv.html')
 
 

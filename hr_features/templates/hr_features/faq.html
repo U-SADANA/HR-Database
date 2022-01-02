@@ -1,80 +1,203 @@
 {% extends 'hr_features/layout.html' %}
 {% load static %}
 
-{% block css%}
-<link href="{% static 'css/faq.css' %}" rel="stylesheet">
+{% block css %}
+<link href="{% static 'css/stylefaq.css' %}" rel="stylesheet">
 {% endblock %}
 
  {% block main %} 
- 
-<div class="traineeship">
-    <div class="circle">
-        <h2 class="circleDot">FREQUENTLY ASKED QUESTIONS</h2>
-    </div>
-  <div class="process-row">
-      <div class="activity animate-from-bottom__0">
-          <div class="relative-block">
-              <div class="activity-icon">
-                  <img alt="An image" src="https://i.ibb.co/ZWp3Yts/ad-operations-process-strategy.png">
-              </div>
-              <div class="inactive">
-                  <div class="title">FAQ 1</div>
-              </div>
-              <div class="active">
-                  <div class="title">What am I going to gain by coming to this event?</div>
-                  <div class="sub-title">This event would also be an opportunity for you to gauge the level of the students and gain insights about our college.Also, you can offer internships and pre-placement offers to students whom you find competent.In addition to that, we will be hosting 100+ HR's, and thus, it will be a great opportunity for you to network and make contacts with fellow HR's.</div>
-              </div>
-          </div>
-        </div>
-        <div class="activity animate-from-bottom__1">
-          <div class="relative-block">
-              <div class="activity-icon">
-                  <img alt="An image" src="https://i.ibb.co/s2nghrT/ad-operations-process-strategy-activation.png" alt="ad-operations-process-strategy-activation">
-              </div>
-              <div class="inactive">
-                  <div class="title">FAQ 2</div>
-              </div>
-              <div class="active">
-                  <div class="title">Will I be provided with a single room to conduct interviews?</div>
-                  <div class="sub-title">Is it alright if I get back to you on this later, (Sir/Ma'am)?</div>
-  
-              </div>
-          </div>
-      </div>
-      <div class="activity animate-from-bottom__2">
-          <div class="relative-block">
-              <div class="activity-icon">
-                  <img alt="An image" src="https://i.ibb.co/ZWp3Yts/ad-operations-process-strategy.png">
-              </div>
-              <div class="inactive">
-                  <div class="title">FAQ 3</div>
-              </div>
-              <div class="active">
-                  <div class="title">Will I paid for attending this event?</div>
-                  <div class="sub-title">I am so sorry, (Sir/Ma'am). We usually do not pay HR's who help us make this event a grand success year after year.
-                    Nevertheless, if you have any other specific requirements, you can always reach out me at this number or my E-Mail.</div>
-              </div>
-          </div>
-      </div>
-      <div class="activity animate-from-bottom__3">
-          <div class="relative-block">
-              <div class="activity-icon">
-                  <img alt="An image" src="https://i.ibb.co/s2nghrT/ad-operations-process-strategy-activation.png" alt="ad-operations-process-strategy-activation">
-              </div>
-              <div class="inactive">
-                  <div class="title">FAQ 4</div>
-              </div>
-              <div class="active">
-                  <div class="title">If HR tries to put forth his own ideas like conducting a seminar or anything else</div>
-                  <div class="sub-title">Sir, our students have already undergone an mock aptitude test and group discussion. We would be glad if you could come and assist our students in an interview-like environment.</div>
-  
-              </div>
-          </div>
-      </div>
-      
-  </div>
+
+ <div class="circle">
+    <h2 class="circleDot">FREQUENTLY ASKED QUESTIONS</h2>
 </div>
+
+
+<div class="boxesContainer">
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>What am I going to gain by coming to this event? </p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>This event would also be an opportunity for you to gauge the level of the students and gain insights about our college.
+        Also, you can offer internships and pre-placement offers to students whom you find competent.
+        In addition to that, we will be hosting 100+ HR's, and thus, it will be a great opportunity for you to network and make contacts with fellow HR's.</h6>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>Will I be provided with a single room to conduct interviews? </p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>Is it alright if I get back to you on this later, (Sir/Ma'am)?  </h6>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>Will I paid for attending this event? </p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>I am so sorry, (Sir/Ma'am). We usually do not pay HR's who help us make this event a grand success year after year.
+        Nevertheless, if you have any other specific requirements, you can always reach out me at this number or my E-Mail.   </h6>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>If HR tries to put forth his own ideas like conducting a seminar or anything else </p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>Sir, our students have already undergone an mock aptitude test and group discussion. We would be glad if you could come </h6>
+       
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="boxesContainer">
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>How many students will I be allotted to interview? </p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>There will be a certain number of students that we will allot to your company based on your department preferences and their aptitude scores. Approximately 15-20 students throughout the day.  </h6>
+      
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>If I'm in a management, can I still attend the event?</p>
+        
+       
+      </div>
+      <div class="back">
+      
+        <h6>Of course sir/madam, we would be privileged to have you.</h6>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>I will only interview a particular number of students </p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>Of course sir/madam, we will arrange accordingly </h6>
+     
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>Will I have to stay for the entire event? Will transport be arranged when I want to leave?</p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>The event starts at 9:30 AM and ends at 3:30 PM. However you can leave any time you want and we will arrange the transport accordingly.  </h6>
+       
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="boxesContainer">
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>If the HR asks for unreasonable requests</p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>Sir/madam we will get back to you on that. </h6>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>If the unreasonable request cannot be fulfilled</p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>No sir/madam, we will not be able to provide (whatever they ask). However we have (the alternate option we do provide) </h6>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBox">
+    <div class="card">
+      <div class="front">
+        <p>Can I not represent my company?</p>
+        
+       
+    </div>
+    <div class="back">
+    
+      <h6>Yes sir/madam, if you are comfortable representing your company. You are welcome to interview our students as a private consultant. We just want to fullfill our goal to give our students a learning experience. </h6>
+     
+      </div>
+    </div>
+  </div>
+
+  
+
+</div>
+<!--.boxesContainer-->
+
+
 {% endblock %}
+{% block content %}
+
+{% endblock%}
 
 {% block js %}
 
